@@ -3,27 +3,21 @@ function pigLatin(text) {
   let userInput = text.toLowerCase(); 
   let result = "";
   let vowelCounter = 0;
-  for (let i = 0; i < userInput.length; i+=1) {
-    if (vowels.indexOf(userInput[0]) > -1){
-      result = userInput + "way";
-      return result; 
-      console.log("exists:" + userInput[i]);
-    } else {vowelCounter = vowelCounter}  
-  };
-  console.log(userInput);
-}
 
-function translatePigLatin(str) {
-    let vowels = ['a', 'e', 'i', 'o', 'u'];
-    let newStr = "";
-
-    if (vowels.indexOf(str[0]) > -1) {
-        newStr = str + "way";
-        return newStr;
-    } else {
-        let firstMatch = str.match(/[aeiou]/g) || 0;
-        let vowel = str.indexOf(firstMatch[0]);
-        newStr = str.substring(vowel) + str.substring(0, vowel) + "ay";
-        return newStr;
+  if (vowels.indexOf(userInput[0]) > -1){
+    result = userInput + "way";
+    return result; 
+    console.log("exists:" + userInput[i]);
+  } else {
+    for (let i = 0; i < userInput.length; i+=1)  {//i= 0
+      for (let v = 0; v < vowels.length; v+=1) {//v=0
+          if(userInput[i] === vowels[v]) {
+          userInput = userInput.substring(i)+userInput.substring(0, i)+"ay"; 
+          return userInput;
+        }
+      };  
     }
+  }
+console.log(userInput);
 }
+
